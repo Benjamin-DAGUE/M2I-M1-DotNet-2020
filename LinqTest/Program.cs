@@ -1068,15 +1068,19 @@ namespace LinqTest
                     break;
                     case "3":
                     {
-                        people.GroupBy(p => p.LastName.First())
+                        people.GroupBy(p => p.LastName.FirstOrDefault())
                             .OrderBy(group => group.Key).ToList()
                             .ForEach(group =>
                             {
                                 Console.WriteLine(group.Key);
-                                foreach (Person person in group.OrderBy(p => p.ToString()))
-                                {
-                                    Console.WriteLine(person.ToString());
-                                }
+                                
+                                group.OrderBy(p => p.ToString()).ToList()
+                                    .ForEach(person => Console.WriteLine(person));
+
+                                //foreach (Person person in group.OrderBy(p => p.ToString()))
+                                //{
+                                //    Console.WriteLine(person.ToString());
+                                //}
                                 Console.ReadLine();
                             });
                     }
