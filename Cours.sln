@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursLinq", "CoursLinq\Cour
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegateMethods", "DelegateMethods\DelegateMethods.csproj", "{DC0930B3-C693-4974-81E0-C51DB17EDEE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqTest", "LinqTest\LinqTest.csproj", "{D0F261AC-5F02-4815-B78D-D0C094CC2DC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DC0930B3-C693-4974-81E0-C51DB17EDEE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC0930B3-C693-4974-81E0-C51DB17EDEE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC0930B3-C693-4974-81E0-C51DB17EDEE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0F261AC-5F02-4815-B78D-D0C094CC2DC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0F261AC-5F02-4815-B78D-D0C094CC2DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0F261AC-5F02-4815-B78D-D0C094CC2DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0F261AC-5F02-4815-B78D-D0C094CC2DC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
