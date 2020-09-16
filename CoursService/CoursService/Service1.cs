@@ -13,13 +13,31 @@ namespace CoursService
 {
     public partial class Service1 : ServiceBase
     {
-        private MonService _Service;
+        #region Fields
+        
+        /// <summary>
+        ///     Instance du service.
+        /// </summary>
+        private readonly MonService _Service;
 
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        ///     Initialise une nouvelle instance de la classe <see cref="Service1"/>.
+        /// </summary>
         public Service1()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this._Service = new MonService(@"C:\TMP\INPUT", "C:\\TMP\\OUTPUT");
+            //Permet d'accepter la mise en pause et la reprise du service.
+            this.CanPauseAndContinue = true;
         }
+
+        #endregion
+
+        #region Methods
 
         protected override void OnStart(string[] args) => this._Service.Start();
 
@@ -28,5 +46,10 @@ namespace CoursService
         protected override void OnPause() => this._Service.Pause();
 
         protected override void OnContinue() => this._Service.Continue();
+
+        #endregion
+
+
+
     }
 }
