@@ -11,7 +11,7 @@ namespace CoursService.Client
     {
         static void Main(string[] args)
         {
-            MonService service = new MonService();
+            MonService service = new MonService(@"C:\TMP\INPUT", "C:\\TMP\\OUTPUT");
 
             service.Start();
 
