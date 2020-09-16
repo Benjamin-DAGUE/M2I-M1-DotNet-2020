@@ -1040,6 +1040,42 @@ namespace LinqTest
                 LastName = lastNames[random.Next(0, lastNames.Count - 1)]
             }).ToList();
 
+            #region Exemple filtre activable / désactivable
+            
+            #region V1
+            bool isSearchStartWithA = true;
+            bool isSearchStartWithB = false;
+            bool isSearchStartWithC = false;
+
+            IEnumerable<Person> query = people;
+
+            if (isSearchStartWithA)
+            {
+                query = query.Where(p => p.LastName.StartsWith("A"));
+            }
+            if (isSearchStartWithB)
+            {
+                query = query.Where(p => p.LastName.StartsWith("B"));
+            }
+            if (isSearchStartWithC)
+            {
+                query = query.Where(p => p.LastName.StartsWith("C"));
+            }
+            query.ToList();
+            #endregion
+
+            #region V2
+            people.Where(p => (isSearchStartWithA && p.LastName.StartsWith("A"))
+                               ||
+                              (isSearchStartWithB && p.LastName.StartsWith("B"))
+                               ||
+                              (isSearchStartWithC && p.LastName.StartsWith("C"))).ToList();
+            #endregion
+
+            #endregion
+
+
+
             do
             {
                 Console.Clear();
