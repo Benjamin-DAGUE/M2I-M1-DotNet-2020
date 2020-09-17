@@ -1,4 +1,6 @@
 ﻿using CoursService.Core;
+using M2I.Diagnostics;
+using M2I.Diagnostics.EventLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,16 @@ namespace CoursService.Client
     {
         static void Main(string[] args)
         {
+            Loggers.AvaillableLoggers.Add(new ConsoleLogger());
+            Loggers.AvaillableLoggers.Add(new FileLogger()
+            {
+                Source = ".\\logfile.log"
+            });
+            Loggers.AvaillableLoggers.Add(new EventLogger()
+            {
+                Name = "Image Resizer Service",
+                Source = "Image Resizer Service"
+            });
             MonService service = new MonService(@"C:\TMP\INPUT", "C:\\TMP\\OUTPUT");
 
             service.Start();

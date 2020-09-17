@@ -1,4 +1,5 @@
-﻿using System;
+﻿using M2I.Diagnostics;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Drawing;
@@ -63,7 +64,7 @@ namespace CoursService.Core
         {
             if (this._Watcher == null)
             {
-                File.AppendAllText("C:\\log.txt", "Starting service..." + Environment.NewLine);
+                Loggers.WriteInformation("Starting service...");
                 
                 try
                 {
@@ -73,8 +74,8 @@ namespace CoursService.Core
                 }
                 catch (Exception ex)
                 {
-                    //En cas d'erreur, on log l'exception.
-                    File.AppendAllText("C:\\log.txt", ex.ToString() + Environment.NewLine);
+                    Loggers.WriteError("Impossible de créer les dossiers");
+                    Loggers.WriteError(ex.ToString());
                     //On relance l'exception pour arrêter le démarrage du service.
                     throw new Exception("Impossible de créer le dossier d'entrée ou de sortie", ex);
                 }
@@ -88,7 +89,7 @@ namespace CoursService.Core
 
                 //On démarre l'écoute.
                 this._Watcher.EnableRaisingEvents = true;
-                File.AppendAllText("C:\\log.txt", "Service started." + Environment.NewLine);
+                Loggers.WriteInformation("Service started.");
             }
         }
 
@@ -100,7 +101,7 @@ namespace CoursService.Core
             if (this._Watcher != null && this._Watcher.EnableRaisingEvents)
             {
                 this._Watcher.EnableRaisingEvents = false;
-                File.AppendAllText("C:\\log.txt", "Service paused." + Environment.NewLine);
+                Loggers.WriteInformation("Service paused.");
             }
         }
 
@@ -112,7 +113,7 @@ namespace CoursService.Core
             if (this._Watcher != null && !this._Watcher.EnableRaisingEvents)
             {
                 this._Watcher.EnableRaisingEvents = true;
-                File.AppendAllText("C:\\log.txt", "Service resumed." + Environment.NewLine);
+                Loggers.WriteInformation("Service resumed.");
             }
         }
 
@@ -126,7 +127,7 @@ namespace CoursService.Core
                 this._Watcher.Created -= this.Watcher_Created;
                 this._Watcher.Dispose();
                 this._Watcher = null;
-                File.AppendAllText("C:\\log.txt", "Service stopped" + Environment.NewLine);
+                Loggers.WriteInformation("Service stopped.");
             }
         }
 
@@ -146,17 +147,17 @@ namespace CoursService.Core
 
                 if (new string[] { ".png", ".jpg", ".jpeg" }.Contains(Path.GetExtension(e.FullPath)))
                 {
-                    File.AppendAllText("C:\\log.txt", "Ouverture du fichier " + e.FullPath + Environment.NewLine);
+                    Loggers.WriteInformation("Ouverture du fichier : " + e.FullPath);
                     //L'événement Created est appelé dès que le fichier est créé.
                     //Cependant, si le fichier est en cours d'écriture, il ne sera pas possible de l'ouvrir.
                     //Ici, on appel donc une méthode qui va se charger d'attendre que le fichier soit disponible puis ensuite l'ouvrir.
                     FileStream imageFileStream = OpenFileAndWaitIfNeeded(e.FullPath);
 
-                    File.AppendAllText("C:\\log.txt", "Redimenssionnement de l'image." + Environment.NewLine);
+                    Loggers.WriteInformation("Redimenssionnement de l'image : " + e.FullPath);
                     //Redimenssionnement de l'image
                     ResizeAndCenterImage(imageFileStream, e.FullPath.Replace(this._InputFolderPath, this._OutputFolderPath));
 
-                    File.AppendAllText("C:\\log.txt", "Fermeture et suppression du fichier source." + Environment.NewLine);
+                    Loggers.WriteInformation("Fermeture et suppression du fichier source : " + e.FullPath);
                     //On ferme le fichier puit on supprime le fichier dans le dossier Input
                     imageFileStream.Dispose();
                     File.Delete(e.FullPath);
@@ -164,7 +165,8 @@ namespace CoursService.Core
             }
             catch (Exception ex)
             {
-                File.AppendAllText("C:\\log.txt", "Impossible de traiter le fichier " + e.FullPath + Environment.NewLine + ex.ToString());
+                Loggers.WriteError("Impossible de traiter le fichier " + e.FullPath);
+                Loggers.WriteError(ex.ToString());
             }
         }
 

@@ -45,5 +45,11 @@
     <Compile Include="MonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\M2I.Diagnostics\M2I.Diagnostics\M2I.Diagnostics.csproj">
+      <Project>{f051de33-c8e7-43cb-82a9-f76620f4765e}</Project>
+      <Name>M2I.Diagnostics</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

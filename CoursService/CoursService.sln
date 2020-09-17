@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursService.Core", "CoursS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursService.Client", "CoursService.Client\CoursService.Client.csproj", "{D2E84E57-2AEA-40F0-89DB-468EE30823B1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M2I.Diagnostics", "..\M2I.Diagnostics\M2I.Diagnostics\M2I.Diagnostics.csproj", "{F051DE33-C8E7-43CB-82A9-F76620F4765E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M2I.Diagnostics.EventLog", "..\M2I.Diagnostics\M2I.Diagnostics.EventLog\M2I.Diagnostics.EventLog.csproj", "{8C313012-43CA-4253-8959-62DE1FDB1B38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{D2E84E57-2AEA-40F0-89DB-468EE30823B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2E84E57-2AEA-40F0-89DB-468EE30823B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2E84E57-2AEA-40F0-89DB-468EE30823B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F051DE33-C8E7-43CB-82A9-F76620F4765E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F051DE33-C8E7-43CB-82A9-F76620F4765E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F051DE33-C8E7-43CB-82A9-F76620F4765E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F051DE33-C8E7-43CB-82A9-F76620F4765E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C313012-43CA-4253-8959-62DE1FDB1B38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C313012-43CA-4253-8959-62DE1FDB1B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C313012-43CA-4253-8959-62DE1FDB1B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C313012-43CA-4253-8959-62DE1FDB1B38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

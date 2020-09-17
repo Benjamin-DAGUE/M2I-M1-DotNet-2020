@@ -35,6 +35,23 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Diagnostics.EventLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.EventLog.4.5.0\lib\net461\System.Diagnostics.EventLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Security.AccessControl, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.4.5.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.4.5.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.5.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,8 +65,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\M2I.Diagnostics\M2I.Diagnostics.EventLog\M2I.Diagnostics.EventLog.csproj">
+      <Project>{8c313012-43ca-4253-8959-62de1fdb1b38}</Project>
+      <Name>M2I.Diagnostics.EventLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\M2I.Diagnostics\M2I.Diagnostics\M2I.Diagnostics.csproj">
+      <Project>{f051de33-c8e7-43cb-82a9-f76620f4765e}</Project>
+      <Name>M2I.Diagnostics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoursService.Core\CoursService.Core.csproj">
       <Project>{08A41465-CAD7-4DD8-BA81-D23FBC316532}</Project>
       <Name>CoursService.Core</Name>

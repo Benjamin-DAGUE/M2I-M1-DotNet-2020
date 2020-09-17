@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M2I.Diagnostics", "M2I.Diagnostics\M2I.Diagnostics.csproj", "{E71C3A17-A9B8-45C4-97D6-C32C2B4A3DEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M2I.Diagnostics.EventLog", "M2I.Diagnostics.EventLog\M2I.Diagnostics.EventLog.csproj", "{2FEA300B-3375-455B-8DAE-0BCFD72D5E99}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E71C3A17-A9B8-45C4-97D6-C32C2B4A3DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E71C3A17-A9B8-45C4-97D6-C32C2B4A3DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E71C3A17-A9B8-45C4-97D6-C32C2B4A3DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E71C3A17-A9B8-45C4-97D6-C32C2B4A3DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FEA300B-3375-455B-8DAE-0BCFD72D5E99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FEA300B-3375-455B-8DAE-0BCFD72D5E99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FEA300B-3375-455B-8DAE-0BCFD72D5E99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FEA300B-3375-455B-8DAE-0BCFD72D5E99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B442820D-ACF0-45CA-87D4-BAB99EB81098}
+	EndGlobalSection
+EndGlobal

@@ -1,4 +1,6 @@
 ﻿using CoursService.Core;
+using M2I.Diagnostics;
+using M2I.Diagnostics.EventLog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +32,16 @@ namespace CoursService
         public Service1()
         {
             this.InitializeComponent();
+            Loggers.AvaillableLoggers.Add(new FileLogger()
+            {
+                Source = ".\\logfile.log"
+            });
+            Loggers.AvaillableLoggers.Add(new EventLogger()
+            {
+                Name = "Image Resizer Service",
+                Source = "Image Resizer Service"
+            });
+
             this._Service = new MonService(@"C:\TMP\INPUT", "C:\\TMP\\OUTPUT");
             //Permet d'accepter la mise en pause et la reprise du service.
             this.CanPauseAndContinue = true;
