@@ -145,21 +145,22 @@ namespace CoursService.Core
                 //Copie du fichier créé dans la sortie.
                 //File.Copy(e.FullPath, e.FullPath.Replace(this._InputFolderPath, this._OutputFolderPath));
 
-                if (new string[] { ".png", ".jpg", ".jpeg" }.Contains(Path.GetExtension(e.FullPath)))
+                if (new string[] { ".png", ".jpg", ".jpeg" }.Contains(Path.GetExtension(e.FullPath).ToLower()))
                 {
                     Loggers.WriteInformation("Ouverture du fichier : " + e.FullPath);
                     //L'événement Created est appelé dès que le fichier est créé.
                     //Cependant, si le fichier est en cours d'écriture, il ne sera pas possible de l'ouvrir.
                     //Ici, on appel donc une méthode qui va se charger d'attendre que le fichier soit disponible puis ensuite l'ouvrir.
-                    FileStream imageFileStream = OpenFileAndWaitIfNeeded(e.FullPath);
+                    using (FileStream imageFileStream = OpenFileAndWaitIfNeeded(e.FullPath))
+                    {
+                        Loggers.WriteInformation("Redimenssionnement de l'image : " + e.FullPath);
+                        //Redimenssionnement de l'image
+                        ResizeAndCenterImage(imageFileStream, e.FullPath.Replace(this._InputFolderPath, this._OutputFolderPath));
 
-                    Loggers.WriteInformation("Redimenssionnement de l'image : " + e.FullPath);
-                    //Redimenssionnement de l'image
-                    ResizeAndCenterImage(imageFileStream, e.FullPath.Replace(this._InputFolderPath, this._OutputFolderPath));
+                        Loggers.WriteInformation("Fermeture et suppression du fichier source : " + e.FullPath);
+                        //On ferme le fichier puit on supprime le fichier dans le dossier Input
+                    }
 
-                    Loggers.WriteInformation("Fermeture et suppression du fichier source : " + e.FullPath);
-                    //On ferme le fichier puit on supprime le fichier dans le dossier Input
-                    imageFileStream.Dispose();
                     File.Delete(e.FullPath);
                 }
             }
