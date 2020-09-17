@@ -48,8 +48,5 @@ namespace CoursService
         protected override void OnContinue() => this._Service.Continue();
 
         #endregion
-
-
-
     }
 }
