@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoursDI.Contract\CoursDI.Contract.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="mkdir $(ProjectDir)..\CoursDI.Host\bin\$(ConfigurationName)\Net5.0\Plugins\CoursDI.Module&#xD;&#xA;xcopy $(TargetDir) $(ProjectDir)..\CoursDI.Host\bin\$(ConfigurationName)\Net5.0\Plugins\CoursDI.Module /Y /F" />
+  </Target>
+
+</Project>
