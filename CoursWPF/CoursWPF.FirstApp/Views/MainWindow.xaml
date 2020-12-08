@@ -108,7 +108,7 @@
 
     <StackPanel Orientation="Vertical" Grid.Column="0">
 
-      <TextBlock Text="{Binding P1.FirstName }"/>
+      <TextBlock Text="{Binding P1.FirstName}"/>
       <TextBlock Text="{Binding P1.LastName}" FontSize="10"/>
       
       <TextBlock Text="{Binding P2.FirstName}"/>
