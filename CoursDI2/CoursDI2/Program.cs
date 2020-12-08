@@ -12,7 +12,12 @@ namespace CoursDI2
         {
             ServiceCollection serviceCollection = new ServiceCollection();
 
+#if DEBUG
             serviceCollection.AddSingleton<IPeopleProvider>(sp => new FakePeopleProvider());
+#else
+            serviceCollection.AddSingleton<IPeopleProvider>(sp => new DBPeopleProvider());
+#endif
+
 
             //serviceCollection.AddTransient<ICustomerView>(serviceProvider => new CustomerView(serviceProvider.GetService<IPeopleProvider>()));
             serviceCollection.AddTransient<ICustomerView>(serviceProvider => new CustomerView(serviceProvider));
