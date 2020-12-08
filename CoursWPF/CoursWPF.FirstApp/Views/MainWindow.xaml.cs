@@ -1,5 +1,7 @@
 ﻿using CoursWPF.FirstApp.Models;
 using CoursWPF.FirstApp.ViewModels;
+using CoursWPF.FirstApp.ViewModels.Abstracts;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,33 +16,34 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CoursWPF.FirstApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         #region Constructors
 
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             //On initialise le DataContext à la création de la MainWindow.
-            this.DataContext = new MainViewModel();
+            this.DataContext = App.ServiceProvider.GetService<IMainViewModel>();
         }
 
         #endregion
 
         #region Methods
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (this.DataContext is MainViewModel viewModel)
+            if (this.DataContext is IMainViewModel viewModel)
             {
-                //TODO : Sauvegarder en base avant d'effacer.
+                //TODO : A mettre dans le ViewModel
                 Person p = new Person();
                 viewModel.People.Add(p);
                 viewModel.SelectedPerson = p;

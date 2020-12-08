@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CoursWPF.FirstApp.ViewModels;
+using CoursWPF.FirstApp.ViewModels.Abstracts;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +16,31 @@ namespace CoursWPF.FirstApp
     /// </summary>
     public partial class App : Application
     {
+        #region Fields
+
+        private static ServiceProvider _ServiceProvider;
+
+        #endregion
+
+        #region Properties
+
+        public static ServiceProvider ServiceProvider => _ServiceProvider;
+
+        #endregion
+
+        #region Methods
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            ServiceCollection service = new ServiceCollection();
+
+            service.AddTransient<IMainViewModel>(sp => new MainViewModel());
+
+            _ServiceProvider = service.BuildServiceProvider();
+        }
+
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CoursWPF.FirstApp.Models;
+using CoursWPF.FirstApp.ViewModels.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace CoursWPF.FirstApp.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : IMainViewModel, INotifyPropertyChanged
     {
         #region Events
 
@@ -35,7 +36,7 @@ namespace CoursWPF.FirstApp.ViewModels
         #region Properties
 
         /// <summary>
-        ///     Obtient ou définit la liste des personnes
+        ///     Obtient la liste des personnes.
         /// </summary>
         public ObservableCollection<Person> People
         {
@@ -49,6 +50,9 @@ namespace CoursWPF.FirstApp.ViewModels
             }
         }
 
+        /// <summary>
+        ///     Obtient ou définit la personne sélectionnée.
+        /// </summary>
         public Person SelectedPerson
         {
             get => this._SelectedPerson;
@@ -65,6 +69,9 @@ namespace CoursWPF.FirstApp.ViewModels
 
         #region Constructors
 
+        /// <summary>
+        ///     Initialise une nouvelle instance de la classe <see cref="MainViewModel"/>.
+        /// </summary>
         public MainViewModel()
         {
             this._People = new ObservableCollection<Person>();

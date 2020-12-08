@@ -28,6 +28,11 @@ namespace CoursWPF.FirstApp.Models
         /// </summary>
         private string _LastName;
 
+        /// <summary>
+        ///     Genre de la personne (Vrai pour une femme, Faux pour un homme, Null pour un non binaire)
+        /// </summary>
+        private bool? _Gender;
+
         #endregion
 
         /// <summary>
@@ -55,6 +60,19 @@ namespace CoursWPF.FirstApp.Models
             {
                 this._LastName = value;
                 this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.LastName)));
+            }
+        }
+    
+        /// <summary>
+        ///     Obtient ou définit le genre de la personne (Vrai pour une femme, Faux pour un homme, Null pour un non binaire).
+        /// </summary>
+        public bool? Gender
+        {
+            get => this._Gender;
+            set
+            {
+                this._Gender = value;
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.Gender)));
             }
         }
     }

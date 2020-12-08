@@ -4,13 +4,15 @@
                     xmlns:models="clr-namespace:CoursWPF.FirstApp.Models">
 
   <DataTemplate x:Key="PersonTemplate" DataType="{x:Type models:Person}">
+    <!--Ici, lorsque l'on Bind le Background à Gender, on utilise le converter disponible dans les ressources statiques pour gérer la conversion.-->
     <Border Margin="5" 
                     CornerRadius="10"
-                    Background="CornflowerBlue"
-                    HorizontalAlignment="Stretch">
+                    Background="{Binding Gender, Converter={StaticResource GenderToColorConverter}}"
+                    HorizontalAlignment="Stretch"
+                    Width="160" Height="80">
       <StackPanel Orientation="Vertical">
-        <TextBlock Text="{Binding FirstName}" Style="{StaticResource TextBlockStyle}"/>
-        <TextBlock Text="{Binding LastName}"  Style="{StaticResource BoldTextBlockStyle}"/>
+        <TextBlock Text="{Binding LastName}"  Style="{StaticResource BoldTextBlockStyle}" TextTrimming="CharacterEllipsis"/>
+        <TextBlock Text="{Binding FirstName}" Style="{StaticResource TextBlockStyle}"     TextTrimming="CharacterEllipsis"/>
       </StackPanel>
     </Border>
   </DataTemplate>

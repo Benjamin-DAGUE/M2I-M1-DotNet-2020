@@ -1,8 +1,9 @@
-﻿<Window x:Class="CoursWPF.FirstApp.MainWindow"
+﻿<mah:MetroWindow x:Class="CoursWPF.FirstApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:CoursWPF.FirstApp"
         mc:Ignorable="d"
         Title="Ma première application" Height="450" Width="800"
@@ -106,25 +107,38 @@
       <ColumnDefinition/>
     </Grid.ColumnDefinitions>
 
-    <StackPanel Orientation="Vertical" Grid.Column="0">
+    <ListBox Grid.Column="0"
+             x:Name="ListBoxPeople" 
+             ItemsSource="{Binding People}"
+             SelectedItem="{Binding SelectedPerson, Mode=TwoWay}"
+             ItemTemplate="{StaticResource PersonTemplate}"
+             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
-      <ListBox x:Name="ListBoxPeople" 
-               ItemsSource="{Binding People}"
-               SelectedItem="{Binding SelectedPerson, Mode=TwoWay}"
-                ItemTemplate="{StaticResource PersonTemplate}">
-      </ListBox>
+      <ListBox.ItemsPanel>
+        <ItemsPanelTemplate>
+          <WrapPanel IsItemsHost="True"/>
+        </ItemsPanelTemplate>
+      </ListBox.ItemsPanel>
+      
+    </ListBox>
 
-    </StackPanel>
+    <StackPanel Grid.Column="1">
+      
+      <TextBox Text="{Binding SelectedPerson.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+               mah:TextBoxHelper.Watermark="Nom"
+               mah:TextBoxHelper.ClearTextButton="True"/>
+      <TextBox Text="{Binding SelectedPerson.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+               mah:TextBoxHelper.Watermark="Prénom"
+               mah:TextBoxHelper.ClearTextButton="True"/>
+      
+      <CheckBox Content="Homme / Femme / Autre" 
+                IsChecked="{Binding SelectedPerson.Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                IsThreeState="True"/>
 
-    <StackPanel Orientation="Vertical" Grid.Column="1">
-
-      <TextBox Text="{Binding SelectedPerson.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-      <TextBox Text="{Binding SelectedPerson.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-      <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Ajouter"/>
+      <Button x:Name="Button" Click="Button_Click" Content="Ajouter"/>
 
     </StackPanel>
 
   </Grid>
 
-</Window>
+</mah:MetroWindow>
