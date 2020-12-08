@@ -29,19 +29,7 @@ namespace CoursWPF.FirstApp
             InitializeComponent();
 
             //On initialise le DataContext à la création de la MainWindow.
-            this.DataContext = new MainViewModel()
-            {
-                P1 = new Person()
-                {
-                    FirstName = "Benjamin",
-                    LastName = "DAGUÉ"
-                },
-                P2 = new Person()
-                {
-                    FirstName = "Peter",
-                    LastName = "BAUDRY"
-                }
-            };
+            this.DataContext = new MainViewModel();
         }
 
         #endregion
@@ -53,9 +41,9 @@ namespace CoursWPF.FirstApp
             if (this.DataContext is MainViewModel viewModel)
             {
                 //TODO : Sauvegarder en base avant d'effacer.
-                viewModel.P1.FirstName = "";
-                viewModel.P1.LastName = "";
-                viewModel.P2 = new Person();
+                Person p = new Person();
+                viewModel.People.Add(p);
+                viewModel.SelectedPerson = p;
             }
         }
 

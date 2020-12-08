@@ -1,6 +1,7 @@
 ﻿using CoursWPF.FirstApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 
@@ -8,7 +9,7 @@ namespace CoursWPF.FirstApp.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        #region Properties
+        #region Events
 
         /// <summary>
         ///     Événément déclenché lorsqu'une propriété de <see cref="Person"/> change.
@@ -20,47 +21,63 @@ namespace CoursWPF.FirstApp.ViewModels
         #region Fields
 
         /// <summary>
-        ///     Personne 1.
+        ///     Liste des personnes.
         /// </summary>
-        private Person _P1;
+        private ObservableCollection<Person> _People;
 
         /// <summary>
-        ///     Personne 2.
+        ///     Personne sélectionnée.
         /// </summary>
-        private Person _P2;
+        private Person _SelectedPerson;
 
         #endregion
 
         #region Properties
 
         /// <summary>
-        ///     Obtient ou définit la personne 1.
+        ///     Obtient ou définit la liste des personnes
         /// </summary>
-        public Person P1
+        public ObservableCollection<Person> People
         {
-            get => this._P1;
-            set
+            get => this._People;
+            private set
             {
                 // On affecte la nouvelle valeur de l'attribut.
-                this._P1 = value;
+                this._People = value;
                 // On déclenche l'événement PropertyChanged pour indiquer au moteur de Binding que la propriété a changée.
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.P1)));
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.People)));
             }
         }
 
-        /// <summary>
-        ///     Obtient ou définit la personne 2.
-        /// </summary>
-        public Person P2
+        public Person SelectedPerson
         {
-            get => this._P2;
+            get => this._SelectedPerson;
             set
             {
                 // On affecte la nouvelle valeur de l'attribut.
-                this._P2 = value;
+                this._SelectedPerson = value;
                 // On déclenche l'événement PropertyChanged pour indiquer au moteur de Binding que la propriété a changée.
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.P2)));
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.SelectedPerson)));
             }
+        }
+
+        #endregion
+
+        #region Constructors
+
+        public MainViewModel()
+        {
+            this._People = new ObservableCollection<Person>();
+            this.People.Add(new Person()
+            {
+                FirstName = "Benjamin",
+                LastName = "DAGUÉ"
+            });
+            this.People.Add(new Person()
+            {
+                FirstName = "Peter",
+                LastName = "BAUDRY"
+            });
         }
 
         #endregion

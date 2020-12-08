@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Ma première application" Height="450" Width="800"
         FontSize="20">
-  
-<!--
+
+  <!--
   Il est possible de définir la largeur d'une colonne (ou la hauteur d'une ligne) soit :
   https://docs.microsoft.com/en-us/dotnet/api/system.windows.gridlength?view=net-5.0
   
@@ -17,8 +17,8 @@
     <ColumnDefinition Width="0.25*"/> : La largeur prend 75% du reste
     <ColumnDefinition Width="0.25*"/> : La largeur prend 25% du reste
 -->
-  
-<!--
+
+  <!--
     Une liaison de données (Binding) permet la synchronisation de deux propriétés, de deux objets.
       Un Binding s'applique sur une propriété de dépendance (DependencyProperty) d'un objet de dépendance (DependecyObject)
         <!> DependencyProperty et DependencyObject sont des classes graphiques <!>
@@ -35,7 +35,7 @@
       - RelativeSource : Permet de définir un objet graphique d'un type spécifié (AncestorType=Grid) comme Source en remontant dans l'arbre graphique (Mode=FindAncestor)
       - Source : Permet de définir une source spécifique pour un Binding (rarement utilisé)
   -->
-  
+
   <!--Exemple d'un Binding en utilisant comme source ElementName
       NOTA : "Path=" est implicite et n'est pas obligatoire-->
   <!--<Grid ShowGridLines="True">
@@ -108,23 +108,20 @@
 
     <StackPanel Orientation="Vertical" Grid.Column="0">
 
-      <TextBlock Text="{Binding P1.FirstName}"/>
-      <TextBlock Text="{Binding P1.LastName}" FontSize="10"/>
-      
-      <TextBlock Text="{Binding P2.FirstName}"/>
-      <TextBlock Text="{Binding P2.LastName}" FontSize="10"/>
+      <ListBox x:Name="ListBoxPeople" 
+               ItemsSource="{Binding People}"
+               SelectedItem="{Binding SelectedPerson, Mode=TwoWay}"
+                ItemTemplate="{StaticResource PersonTemplate}">
+      </ListBox>
 
     </StackPanel>
 
     <StackPanel Orientation="Vertical" Grid.Column="1">
 
-      <TextBox Text="{Binding P1.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-      <TextBox Text="{Binding P1.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+      <TextBox Text="{Binding SelectedPerson.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+      <TextBox Text="{Binding SelectedPerson.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-      <TextBox Text="{Binding P2.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-      <TextBox Text="{Binding P2.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-      <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Save"/>
+      <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Ajouter"/>
 
     </StackPanel>
 
