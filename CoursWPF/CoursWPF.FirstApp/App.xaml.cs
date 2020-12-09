@@ -36,7 +36,8 @@ namespace CoursWPF.FirstApp
 
             ServiceCollection service = new ServiceCollection();
 
-            service.AddTransient<IMainViewModel>(sp => new MainViewModel());
+            service.AddTransient<IViewModelPeople>(sp => new ViewModelPeople());
+            service.AddTransient<IViewModelVehicules>(sp => new ViewModelVehicules());
 
             _ServiceProvider = service.BuildServiceProvider();
         }

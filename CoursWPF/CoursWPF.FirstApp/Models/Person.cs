@@ -1,21 +1,13 @@
-﻿using System;
+﻿using CoursWPF.MVVM;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
 namespace CoursWPF.FirstApp.Models
 {
-    public class Person : INotifyPropertyChanged
+    public class Person : ObservableObject
     {
-        #region Events
-
-        /// <summary>
-        ///     Événément déclenché lorsqu'une propriété de <see cref="Person"/> change.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Fields
 
         /// <summary>
@@ -41,13 +33,7 @@ namespace CoursWPF.FirstApp.Models
         public string FirstName 
         {
             get => this._FirstName;
-            set
-            {
-                // On affecte la nouvelle valeur de l'attribut.
-                this._FirstName = value;
-                // On déclenche l'événement PropertyChanged pour indiquer au moteur de Binding que la propriété a changée.
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.FirstName)));
-            }
+            set => this.SetProperty(nameof(this.FirstName), ref this._FirstName, value);
         }
 
         /// <summary>
@@ -56,11 +42,7 @@ namespace CoursWPF.FirstApp.Models
         public string LastName
         {
             get => this._LastName;
-            set
-            {
-                this._LastName = value;
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.LastName)));
-            }
+            set => this.SetProperty(nameof(this.LastName), ref this._LastName, value);
         }
     
         /// <summary>
@@ -69,11 +51,7 @@ namespace CoursWPF.FirstApp.Models
         public bool? Gender
         {
             get => this._Gender;
-            set
-            {
-                this._Gender = value;
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.Gender)));
-            }
+            set => this.SetProperty(nameof(this.Gender), ref this._Gender, value);
         }
     }
 }

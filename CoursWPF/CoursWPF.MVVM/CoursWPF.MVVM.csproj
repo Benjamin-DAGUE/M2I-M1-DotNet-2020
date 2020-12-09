@@ -5,4 +5,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Converters\" />
+    <Folder Include="Abstracts\" />
+  </ItemGroup>
+
 </Project>

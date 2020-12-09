@@ -19,10 +19,51 @@
           </Binding.Converter>
         </Binding>
       </Border.Background>-->
-      <StackPanel Orientation="Vertical">
-        <TextBlock Text="{Binding LastName}"  Style="{StaticResource BoldTextBlockStyle}" TextTrimming="CharacterEllipsis"/>
-        <TextBlock Text="{Binding FirstName}" Style="{StaticResource TextBlockStyle}"     TextTrimming="CharacterEllipsis"/>
-      </StackPanel>
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="1" Grid.RowSpan="2" 
+                Command="{Binding DataContext.DeleteItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}" 
+                CommandParameter="{Binding }"
+                Content="X"/>
+        
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LastName}"  Style="{StaticResource BoldTextBlockStyle}" TextTrimming="CharacterEllipsis"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding FirstName}" Style="{StaticResource TextBlockStyle}"     TextTrimming="CharacterEllipsis"/>
+
+      </Grid>
+    </Border>
+  </DataTemplate>
+
+  <DataTemplate x:Key="VehiculeTemplate" DataType="{x:Type models:Vehicule}">
+    <Border Margin="5" 
+                    CornerRadius="10"
+                    Background="CornflowerBlue"
+                    HorizontalAlignment="Stretch"
+                    Width="160" Height="80">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions> 
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="1"
+                Command="{Binding DataContext.DeleteItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}" 
+                CommandParameter="{Binding }"
+                Content="X"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LicensePlate}"  Style="{StaticResource BoldTextBlockStyle}" TextTrimming="CharacterEllipsis"/>
+
+      </Grid>
     </Border>
   </DataTemplate>
 

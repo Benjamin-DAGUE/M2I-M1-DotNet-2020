@@ -5,144 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:CoursWPF.FirstApp"
-        xmlns:models="clr-namespace:CoursWPF.FirstApp.Models"
-        xmlns:vm="clr-namespace:CoursWPF.FirstApp.ViewModels.Abstracts"
+        xmlns:views="clr-namespace:CoursWPF.FirstApp.Views"
         mc:Ignorable="d"
-        DataContext="{local:ProvideService ServiceType={x:Type vm:IMainViewModel}}"
         Title="Ma première application" Height="450" Width="800"
         FontSize="20">
 
-  <!--
-  Il est possible de définir la largeur d'une colonne (ou la hauteur d'une ligne) soit :
-  https://docs.microsoft.com/en-us/dotnet/api/system.windows.gridlength?view=net-5.0
-  
-    <ColumnDefinition Width="Auto"/> : La largeur s'adapte au contenu.
-    <ColumnDefinition Width="100"/> : La largeur est de 100px.
-    <ColumnDefinition Width="0.25*"/> : La largeur prend 75% du reste
-    <ColumnDefinition Width="0.25*"/> : La largeur prend 25% du reste
--->
-
-  <!--
-    Une liaison de données (Binding) permet la synchronisation de deux propriétés, de deux objets.
-      Un Binding s'applique sur une propriété de dépendance (DependencyProperty) d'un objet de dépendance (DependecyObject)
-        <!> DependencyProperty et DependencyObject sont des classes graphiques <!>
-        <!> Ceci signifie que seul un objet graphique peut être CIBLE d'une liaison de données <!>
-  
-      - Path : Détermine le nom (ou le chemin) de la propriété de l'objet SOURCE avec laquelle ont veut se synchroniser.
-      - Mode : Détermine le mode de synchro (OneWay, OneWayToSource et TwoWay).
-      - UpdateSourceTrigger : Détermine l'action qui déclenche la mise à jour de la source (LostFocus ou PropertyChanged).
-  
-      Il exsite 4 possibilités de définir l'objet SOURCE d'un Binding :
-      - ElementName : Permet de définir le nom d'un objet graphique qui devient la source
-      - DataContext : Le DataContext est une propriété de type objet qui permet de définir la source pour l'ensemble des Bindings d'une hiérarchie graphique.
-        <!> Lorsque l'on affecte le DataContext à un objet graphique, tous les objets graphiques enfants partagent cette instance, sauf s'ils précisent un DataContext spécifique). <!>
-      - RelativeSource : Permet de définir un objet graphique d'un type spécifié (AncestorType=Grid) comme Source en remontant dans l'arbre graphique (Mode=FindAncestor)
-      - Source : Permet de définir une source spécifique pour un Binding (rarement utilisé)
-  -->
-
-  <!--Exemple d'un Binding en utilisant comme source ElementName
-      NOTA : "Path=" est implicite et n'est pas obligatoire-->
-  <!--<Grid ShowGridLines="True">
+  <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition/>
+      <RowDefinition Height="Auto"/>
       <RowDefinition/>
     </Grid.RowDefinitions>
 
-    <TextBox x:Name="MyTextBox" Grid.Row="0"/>
-    <TextBox Grid.Row="1" Text="{Binding Path=Text, ElementName=MyTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+    <Menu>
+      <MenuItem Header="Fichier">
+        <MenuItem Header="Sauvegarder"  Command="{Binding Save}"/>
+        <Separator/>
+        <MenuItem Header="Quitter"      Command="{Binding Exit}"/>
+      </MenuItem>
+    </Menu>
 
-  </Grid>-->
-
-
-  <!--Exemple d'un Binding en utilisant comme source DataContext-->
-  <!--<Grid ShowGridLines="True">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition/>
-      <ColumnDefinition/>
-    </Grid.ColumnDefinitions>
-
-    <StackPanel Orientation="Vertical" Grid.Column="0">
-
-      <TextBlock Text="{Binding P1.FirstName }"/>
-      <TextBlock Text="{Binding Path=P1.LastName}" FontSize="10"/>
-
-    </StackPanel>
-
-    <StackPanel Orientation="Vertical" Grid.Column="1">
-
-      <TextBlock Text="{Binding P2.FirstName}"/>
-      <TextBlock Text="{Binding Path=P2.LastName}" FontSize="10"/>
-
-    </StackPanel>
-
-  </Grid>-->
-
-
-  <!--Exemple d'un Binding en utilisant comme source DataContext et une RelativeSource-->
-  <!--<Grid ShowGridLines="True">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition/>
-      <ColumnDefinition/>
-    </Grid.ColumnDefinitions>
-
-    <StackPanel Orientation="Vertical" Grid.Column="0" DataContext="{Binding P1}">
-
-      <TextBlock Text="{Binding FirstName }"/>
-      <TextBlock Text="{Binding Path=LastName}" FontSize="10"/>
-
-      <TextBlock Text="{Binding DataContext.P2.FirstName, RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor}}"/>
-      <TextBlock Text="{Binding Path=DataContext.P2.LastName , RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor}}" FontSize="10"/>
-
-    </StackPanel>
-
-    <StackPanel Orientation="Vertical" Grid.Column="1" DataContext="{Binding P2}">
-
-      <TextBlock Text="{Binding FirstName}"/>
-      <TextBlock Text="{Binding Path=LastName}" FontSize="10"/>
-
-    </StackPanel>
-
-  </Grid>-->
-
-  <Grid ShowGridLines="True">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition/>
-      <ColumnDefinition/>
-    </Grid.ColumnDefinitions>
-
-    <ListBox Grid.Column="0"
-             x:Name="ListBoxPeople" 
-             ItemsSource="{Binding People}"
-             SelectedItem="{Binding SelectedPerson, Mode=TwoWay}"
-             ItemTemplate="{StaticResource PersonTemplate}"
-             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-
-      <ListBox.ItemsPanel>
-        <ItemsPanelTemplate>
-          <WrapPanel IsItemsHost="True"/>
-        </ItemsPanelTemplate>
-      </ListBox.ItemsPanel>
-      
-    </ListBox>
-
-    <StackPanel Grid.Column="1">
-      
-      <TextBox Text="{Binding SelectedPerson.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-               mah:TextBoxHelper.Watermark="Nom"
-               mah:TextBoxHelper.ClearTextButton="True"/>
-      <TextBox Text="{Binding SelectedPerson.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-               mah:TextBoxHelper.Watermark="Prénom"
-               mah:TextBoxHelper.ClearTextButton="True"/>
-      
-      <CheckBox Content="Homme / Femme / Autre" 
-                IsChecked="{Binding SelectedPerson.Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                IsThreeState="True"/>
-
-      <!--<Button x:Name="Button" Click="Button_Click" Content="Ajouter"/>-->
-      <Button x:Name="Button" Command="{Binding AddPerson}" Content="Ajouter"/>
-
-    </StackPanel>
+    <TabControl Grid.Row="1">
+      <TabItem Header="Personnes" DataContext="{Binding }">
+        <views:ViewPeople/>
+      </TabItem>
+      <TabItem Header="Véhicules">
+        <views:ViewVehicules/>
+      </TabItem>
+    </TabControl>
 
   </Grid>
-
 </mah:MetroWindow>

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:CoursWPF.FirstApp"
              xmlns:converters="clr-namespace:CoursWPF.FirstApp.Converters"
+             xmlns:MVVMconverters="clr-namespace:CoursWPF.MVVM.Converters;assembly=CoursWPF.MVVM"
              StartupUri="Views/MainWindow.xaml">
   <Application.Resources>
     <ResourceDictionary>
@@ -12,6 +13,7 @@
           
           <!--On créé une instance partagée d'un converter qui sera accessible comme ressource statique-->
           <converters:GenderToColorConverter x:Key="GenderToColorConverter"/>
+          <MVVMconverters:ObjectToVisibilityConverter x:Key="ObjectToVisibilityConverter"/>
           
         </ResourceDictionary>
 
