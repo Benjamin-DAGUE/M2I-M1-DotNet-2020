@@ -56,6 +56,9 @@
           <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <!--Le DataContext du Template est le véhicule représenté par le template.
+            La commande DeleteItem n'existe pas dans cette classe mais de ViewModelVheicules.
+            On utilise ici une RelativeSource pour accéder au ViewModel en remontant à la ListBox.-->
         <Button Grid.Column="1"
                 Command="{Binding DataContext.DeleteItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}" 
                 CommandParameter="{Binding }"

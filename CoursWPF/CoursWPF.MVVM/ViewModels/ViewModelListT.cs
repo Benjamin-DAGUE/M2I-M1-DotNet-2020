@@ -8,37 +8,41 @@ using System.Threading.Tasks;
 
 namespace CoursWPF.MVVM.ViewModels
 {
+    /// <summary>
+    ///     ViewModel qui prend en charge la gestion d'une liste.
+    /// </summary>
+    /// <typeparam name="T">Type d'élément de la liste.</typeparam>
     public abstract class ViewModelList<T> : ObservableObject, IViewModelList<T>
         where T : new()
     {
         #region Fields
 
         /// <summary>
-        ///     Liste des éléments.
+        ///     Source de données de la liste.
         /// </summary>
         private ObservableCollection<T> _ItemsSource;
 
         /// <summary>
-        ///     Élémént sélectionné.
+        ///     Élément sélectionné de la liste.
         /// </summary>
         private T _SelectedItem;
 
         /// <summary>
-        ///     Commande pour ajouter une élément.
+        ///     Commande pour ajouter un élément dans la liste.
         /// </summary>
-        private RelayCommand _AddItem;
+        private readonly RelayCommand _AddItem;
 
         /// <summary>
-        ///     Commande pour supprimer l'élément sélectionné.
+        ///     Commande pour supprimer un élément dans la liste.
         /// </summary>
-        private RelayCommand _DeleteItem;
+        private readonly RelayCommand _DeleteItem;
 
         #endregion
 
         #region Properties
 
         /// <summary>
-        ///     Obtient la liste des éléments.
+        ///     Obtient la source de données de la liste.
         /// </summary>
         public ObservableCollection<T> ItemsSource
         {
@@ -47,7 +51,7 @@ namespace CoursWPF.MVVM.ViewModels
         }
 
         /// <summary>
-        ///     Obtient ou définit l'élément sélectionné.
+        ///     Obtient ou définit l'élément sélectionné de la liste.
         /// </summary>
         public T SelectedItem
         {
@@ -56,12 +60,12 @@ namespace CoursWPF.MVVM.ViewModels
         }
 
         /// <summary>
-        ///     Obtient la commande pour ajouter un élément.
+        ///     Obtient la commande pour ajouter un élément dans la liste.
         /// </summary>
         public RelayCommand AddItem => this._AddItem;
 
         /// <summary>
-        ///     Obtient la commande pour supprimer élément.
+        ///     Obtient la commande pour supprimer un élément dans la liste.
         /// </summary>
         public RelayCommand DeleteItem => this._DeleteItem;
 
@@ -70,7 +74,7 @@ namespace CoursWPF.MVVM.ViewModels
         #region Constructors
 
         /// <summary>
-        ///     Initialise une nouvelle instance de la classe <see cref="MainViewModel"/>.
+        ///     Initialise une nouvelle instance de la classe <see cref="ViewModelList{T}"/>.
         /// </summary>
         public ViewModelList()
         {
@@ -86,8 +90,17 @@ namespace CoursWPF.MVVM.ViewModels
 
         #region AddItem
 
+        /// <summary>
+        ///     Test si la commande <see cref="AddItem"/> peut être exécutée.
+        /// </summary>
+        /// <param name="param">Paramètre de la commande.</param>
+        /// <returns>Détermine si la commande peut être exécutée.</returns>
         protected virtual bool CanExecuteAddItem(object param) => true;
 
+        /// <summary>
+        ///     Exécute la commande <see cref="AddItem"/>.
+        /// </summary>
+        /// <param name="param">Paramètre de la commande.</param>
         protected virtual void ExecuteAddItem(object param)
         {
             T p = new T();
@@ -99,8 +112,17 @@ namespace CoursWPF.MVVM.ViewModels
 
         #region DeleteItem
 
+        /// <summary>
+        ///     Test si la commande <see cref="DeleteItem"/> peut être exécutée.
+        /// </summary>
+        /// <param name="param">Paramètre de la commande.</param>
+        /// <returns>Détermine si la commande peut être exécutée.</returns>
         protected virtual bool CanExecuteDeleteItem(object param) => param is T || (param == null && this.SelectedItem != null);
 
+        /// <summary>
+        ///     Exécute la commande <see cref="DeleteItem"/>.
+        /// </summary>
+        /// <param name="param">Paramètre de la commande.</param>
         protected virtual void ExecuteDeleteItem(object param)
         {
             if (param is T item)

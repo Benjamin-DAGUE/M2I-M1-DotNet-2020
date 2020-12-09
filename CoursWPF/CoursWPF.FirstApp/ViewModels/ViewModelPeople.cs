@@ -10,6 +10,9 @@ using System.Text;
 
 namespace CoursWPF.FirstApp.ViewModels
 {
+    /// <summary>
+    ///     ViewModel pour gérer une liste de <see cref="Person"/>.
+    /// </summary>
     public class ViewModelPeople : ViewModelList<Person>, IViewModelPeople
     {
         #region Constructors

@@ -6,6 +6,9 @@ using System.Text;
 
 namespace CoursWPF.FirstApp.Models
 {
+    /// <summary>
+    ///     Représente une personne.
+    /// </summary>
     public class Person : ObservableObject
     {
         #region Fields

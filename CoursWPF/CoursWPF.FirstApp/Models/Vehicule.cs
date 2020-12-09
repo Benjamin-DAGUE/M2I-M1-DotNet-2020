@@ -6,6 +6,9 @@ using System.Text;
 
 namespace CoursWPF.FirstApp.Models
 {
+    /// <summary>
+    ///     Représente un véhicule.
+    /// </summary>
     public class Vehicule : ObservableObject
     {
         #region Fields

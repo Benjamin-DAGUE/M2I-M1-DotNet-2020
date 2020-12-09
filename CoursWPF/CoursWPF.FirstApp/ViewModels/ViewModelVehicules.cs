@@ -10,6 +10,9 @@ using System.Text;
 
 namespace CoursWPF.FirstApp.ViewModels
 {
+    /// <summary>
+    ///     ViewModel pour gérer une liste de <see cref="Vehicule"/>.
+    /// </summary>
     public class ViewModelVehicules : ViewModelList<Vehicule>, IViewModelVehicules
     {
         #region Constructors

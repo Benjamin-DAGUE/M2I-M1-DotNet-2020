@@ -9,6 +9,9 @@ using System.Text;
 
 namespace CoursWPF.FirstApp.ViewModels.Abstracts
 {
+    /// <summary>
+    ///     Interface d'un ViewModel pour gérer une liste de <see cref="Person"/>.
+    /// </summary>
     public interface IViewModelPeople : IViewModelList<Person>
     {
 
