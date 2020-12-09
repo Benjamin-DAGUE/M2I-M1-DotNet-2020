@@ -1,5 +1,6 @@
 ﻿using CoursWPF.FirstApp.Models;
 using CoursWPF.FirstApp.ViewModels.Abstracts;
+using CoursWPF.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,6 +31,11 @@ namespace CoursWPF.FirstApp.ViewModels
         ///     Personne sélectionnée.
         /// </summary>
         private Person _SelectedPerson;
+
+        /// <summary>
+        ///     Commande pour ajouter une personne.
+        /// </summary>
+        private RelayCommand _AddPerson;
 
         #endregion
 
@@ -65,6 +71,11 @@ namespace CoursWPF.FirstApp.ViewModels
             }
         }
 
+        /// <summary>
+        ///     Obtient la commande pour ajouter une personne.
+        /// </summary>
+        public RelayCommand AddPerson => this._AddPerson;
+
         #endregion
 
         #region Constructors
@@ -74,6 +85,8 @@ namespace CoursWPF.FirstApp.ViewModels
         /// </summary>
         public MainViewModel()
         {
+            //this._AddPerson = new RelayCommand(this.ExecuteAddPerson, this.CanExecuteAddPerson);
+            this._AddPerson = new RelayCommand(this.ExecuteAddPerson);
             this._People = new ObservableCollection<Person>();
             this.People.Add(new Person()
             {
@@ -86,6 +99,26 @@ namespace CoursWPF.FirstApp.ViewModels
                 LastName = "BAUDRY"
             });
         }
+
+        #endregion
+
+        #region Methods
+
+        #region AddPerson
+
+        //private bool CanExecuteAddPerson(object param)
+        //{
+        //    return true;
+        //}
+
+        private void ExecuteAddPerson(object param)
+        {
+            Person p = new Person();
+            this.People.Add(p);
+            this.SelectedPerson = p;
+        }
+
+        #endregion
 
         #endregion
     }

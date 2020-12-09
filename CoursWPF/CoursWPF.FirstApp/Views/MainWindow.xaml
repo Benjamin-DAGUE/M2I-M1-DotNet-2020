@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:CoursWPF.FirstApp"
+        xmlns:models="clr-namespace:CoursWPF.FirstApp.Models"
+        xmlns:vm="clr-namespace:CoursWPF.FirstApp.ViewModels.Abstracts"
         mc:Ignorable="d"
+        DataContext="{local:ProvideService ServiceType={x:Type vm:IMainViewModel}}"
         Title="Ma première application" Height="450" Width="800"
         FontSize="20">
 
@@ -135,7 +138,8 @@
                 IsChecked="{Binding SelectedPerson.Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                 IsThreeState="True"/>
 
-      <Button x:Name="Button" Click="Button_Click" Content="Ajouter"/>
+      <!--<Button x:Name="Button" Click="Button_Click" Content="Ajouter"/>-->
+      <Button x:Name="Button" Command="{Binding AddPerson}" Content="Ajouter"/>
 
     </StackPanel>
 

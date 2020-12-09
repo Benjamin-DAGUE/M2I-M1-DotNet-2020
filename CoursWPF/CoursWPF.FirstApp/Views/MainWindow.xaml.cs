@@ -32,23 +32,23 @@ namespace CoursWPF.FirstApp
             this.InitializeComponent();
 
             //On initialise le DataContext à la création de la MainWindow.
-            this.DataContext = App.ServiceProvider.GetService<IMainViewModel>();
+            //this.DataContext = App.ServiceProvider.GetService<IMainViewModel>();
         }
 
         #endregion
 
         #region Methods
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.DataContext is IMainViewModel viewModel)
-            {
-                //TODO : A mettre dans le ViewModel
-                Person p = new Person();
-                viewModel.People.Add(p);
-                viewModel.SelectedPerson = p;
-            }
-        }
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (this.DataContext is IMainViewModel viewModel)
+        //    {
+        //        //TODO : A mettre dans le ViewModel
+        //        Person p = new Person();
+        //        viewModel.People.Add(p);
+        //        viewModel.SelectedPerson = p;
+        //    }
+        //}
 
         #endregion
     }
