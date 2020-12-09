@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:CoursWPF.FirstApp"
                     xmlns:converters="clr-namespace:CoursWPF.FirstApp.Converters"
+                    xmlns:views="clr-namespace:CoursWPF.FirstApp.Views"
+                    xmlns:vm="clr-namespace:CoursWPF.FirstApp.ViewModels.Abstracts"
                     xmlns:models="clr-namespace:CoursWPF.FirstApp.Models">
 
   <DataTemplate x:Key="PersonTemplate" DataType="{x:Type models:Person}">
@@ -29,11 +31,14 @@
           <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="1" Grid.RowSpan="2" 
+        <!--<Button Grid.Column="1" Grid.RowSpan="2" 
                 Command="{Binding DataContext.DeleteItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}" 
                 CommandParameter="{Binding }"
+                Content="X"/>-->
+        <Button Grid.Column="1" Grid.RowSpan="2" 
+                Command="{Binding DeleteItem}" 
                 Content="X"/>
-        
+
         <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LastName}"  Style="{StaticResource BoldTextBlockStyle}" TextTrimming="CharacterEllipsis"/>
         <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding FirstName}" Style="{StaticResource TextBlockStyle}"     TextTrimming="CharacterEllipsis"/>
 
@@ -70,4 +75,12 @@
     </Border>
   </DataTemplate>
 
+  <DataTemplate x:Key="ViewModelPeopleTemplate" DataType="{x:Type vm:IViewModelPeople}">
+    <views:ViewPeople/>
+  </DataTemplate>
+  
+  <DataTemplate x:Key="ViewModelVehiculesTemplate" DataType="{x:Type vm:IViewModelVehicules}">
+    <views:ViewVehicules/>
+  </DataTemplate>
+  
 </ResourceDictionary>

@@ -22,6 +22,8 @@ namespace CoursWPF.FirstApp.ViewModels
         /// </summary>
         public ViewModelVehicules()
         {
+            this.Title = "Véhicules";
+
             this.ItemsSource.Add(new Vehicule()
             {
                 LicensePlate = "xx-001-xx"
@@ -31,6 +33,12 @@ namespace CoursWPF.FirstApp.ViewModels
                 LicensePlate = "xx-002-xx"
             });
         }
+
+        #endregion
+
+        #region Methods
+
+        protected override Vehicule CreateInstance(object param) => new Vehicule();
 
         #endregion
     }

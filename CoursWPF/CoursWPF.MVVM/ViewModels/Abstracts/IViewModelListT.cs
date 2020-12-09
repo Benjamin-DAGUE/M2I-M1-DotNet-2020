@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoursWPF.MVVM.Abstracts;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -11,8 +12,13 @@ namespace CoursWPF.MVVM.ViewModels.Abstracts
     ///     Interface d'un ViewModel qui prend en charge la gestion d'un liste.
     /// </summary>
     /// <typeparam name="T">Type de données de la liste.</typeparam>
-    public interface IViewModelList<T>
+    public interface IViewModelList<T> : IObservableObject
     {
+        /// <summary>
+        ///     Obtient le titre du ViewModel
+        /// </summary>
+        string Title { get; }
+
         /// <summary>
         ///     Obtient la source de données de la liste.
         /// </summary>

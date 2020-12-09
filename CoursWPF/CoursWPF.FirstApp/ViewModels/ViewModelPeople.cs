@@ -22,6 +22,7 @@ namespace CoursWPF.FirstApp.ViewModels
         /// </summary>
         public ViewModelPeople()
         {
+            this.Title = "Personnes";
             this.ItemsSource.Add(new Person()
             {
                 FirstName = "Benjamin",
@@ -33,6 +34,12 @@ namespace CoursWPF.FirstApp.ViewModels
                 LastName = "BAUDRY"
             });
         }
+
+        #endregion
+
+        #region Methods
+
+        protected override Person CreateInstance(object param) => new Person();
 
         #endregion
     }

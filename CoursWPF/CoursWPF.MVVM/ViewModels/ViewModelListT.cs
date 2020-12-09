@@ -13,9 +13,13 @@ namespace CoursWPF.MVVM.ViewModels
     /// </summary>
     /// <typeparam name="T">Type d'élément de la liste.</typeparam>
     public abstract class ViewModelList<T> : ObservableObject, IViewModelList<T>
-        where T : new()
     {
         #region Fields
+
+        /// <summary>
+        ///     Titre du ViewModel;
+        /// </summary>
+        private string _Title;
 
         /// <summary>
         ///     Source de données de la liste.
@@ -40,6 +44,15 @@ namespace CoursWPF.MVVM.ViewModels
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     Obtient ou définit le titre du ViewModel.
+        /// </summary>
+        public string Title 
+        { 
+            get => this._Title;
+            set => this.SetProperty(nameof(this.Title), ref this._Title, value);
+        }
 
         /// <summary>
         ///     Obtient la source de données de la liste.
@@ -103,10 +116,12 @@ namespace CoursWPF.MVVM.ViewModels
         /// <param name="param">Paramètre de la commande.</param>
         protected virtual void ExecuteAddItem(object param)
         {
-            T p = new T();
+            T p = this.CreateInstance(param);
             this.ItemsSource.Add(p);
             this.SelectedItem = p;
         }
+
+        protected virtual T CreateInstance(object param) => default(T);
 
         #endregion
 

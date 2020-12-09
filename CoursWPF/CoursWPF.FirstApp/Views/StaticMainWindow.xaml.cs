@@ -17,38 +17,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Extensions.DependencyInjection;
+using CoursWPF.FirstApp.Views.Abstracts;
 
 namespace CoursWPF.FirstApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for StaticMainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class StaticMainWindow : MetroWindow, IStaticMainWindow
     {
         #region Constructors
 
-        public MainWindow()
+        /// <summary>
+        ///     Initialise une nouvelle instance de la classe <see cref="StaticMainWindow"/>
+        /// </summary>
+        public StaticMainWindow()
         {
             this.InitializeComponent();
-
-            //On initialise le DataContext à la création de la MainWindow.
-            //this.DataContext = App.ServiceProvider.GetService<IMainViewModel>();
         }
-
-        #endregion
-
-        #region Methods
-
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (this.DataContext is IMainViewModel viewModel)
-        //    {
-        //        //TODO : A mettre dans le ViewModel
-        //        Person p = new Person();
-        //        viewModel.People.Add(p);
-        //        viewModel.SelectedPerson = p;
-        //    }
-        //}
 
         #endregion
     }

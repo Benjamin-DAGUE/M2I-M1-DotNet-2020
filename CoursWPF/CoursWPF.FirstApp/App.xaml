@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:CoursWPF.FirstApp"
              xmlns:converters="clr-namespace:CoursWPF.FirstApp.Converters"
-             xmlns:MVVMconverters="clr-namespace:CoursWPF.MVVM.Converters;assembly=CoursWPF.MVVM"
-             StartupUri="Views/MainWindow.xaml">
+             xmlns:MVVMconverters="clr-namespace:CoursWPF.MVVM.Converters;assembly=CoursWPF.MVVM">
+         <!--StartupUri="Views/MainWindow.xaml"-->
+
   <Application.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>

@@ -1,5 +1,6 @@
 ﻿using CoursWPF.FirstApp.ViewModels;
 using CoursWPF.FirstApp.ViewModels.Abstracts;
+using CoursWPF.FirstApp.Views.Abstracts;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -38,8 +39,17 @@ namespace CoursWPF.FirstApp
 
             service.AddTransient<IViewModelPeople>(sp => new ViewModelPeople());
             service.AddTransient<IViewModelVehicules>(sp => new ViewModelVehicules());
+            service.AddSingleton<IViewModelMainStatic>(sp => new ViewModelMainStatic());
+            service.AddSingleton<IViewModelMainDynamic>(sp => new ViewModelMainDynamic());
+            service.AddSingleton<IStaticMainWindow>(sp => new StaticMainWindow());
+            service.AddSingleton<IDynamicMainWindow>(sp => new DynamicMainWindow());
 
             _ServiceProvider = service.BuildServiceProvider();
+
+            this.MainWindow = _ServiceProvider.GetService<IStaticMainWindow>() as Window;
+            //this.MainWindow = _ServiceProvider.GetService<IDynamicMainWindow>() as Window;
+
+            this.MainWindow.Show();
         }
 
         #endregion
