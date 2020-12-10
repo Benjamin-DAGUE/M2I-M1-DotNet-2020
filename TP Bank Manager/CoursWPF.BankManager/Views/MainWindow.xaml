@@ -1,0 +1,70 @@
+﻿<mahapps:MetroWindow x:Class="CoursWPF.BankManager.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:CoursWPF.BankManager"
+        mc:Ignorable="d"
+        Title="Bank Manager" Height="450" Width="800">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <Grid Grid.Row="0">
+      <Grid.LayoutTransform>
+        <ScaleTransform x:Name="MainScaleTransform" CenterX="0" CenterY="0" ScaleX="{Binding Path=Value, ElementName=ScaleSlider}" ScaleY="{Binding Path=Value, ElementName=ScaleSlider}"/>
+      </Grid.LayoutTransform>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <!--#region menu principal-->
+      <Menu Grid.Row="0" Grid.ColumnSpan="2">
+        <MenuItem Header="Fichier">
+          <MenuItem Header="Sauvegarder"  Command="{Binding SaveCommand}"/>
+          <Separator/>
+          <MenuItem Header="Quitter"      Command="{Binding ExitCommand}"/>
+        </MenuItem>
+        <MenuItem Header="Édition">
+          <MenuItem Header="Ajouter"    Command="{Binding SelectedItem.AddCommand}"/>
+          <MenuItem Header="Supprimer"  Command="{Binding SelectedItem.DeleteCommand}"/>
+        </MenuItem>
+      </Menu>
+      <!--#endregion -->
+
+      <TabControl Grid.Row="1" ItemsSource="{Binding ItemsSource}" SelectedItem="{Binding SelectedItem}">
+        <TabControl.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding Title}"/>
+          </DataTemplate>
+        </TabControl.ItemTemplate>
+      </TabControl>
+      
+    </Grid>
+
+    <StatusBar Grid.Row="1">
+      <StatusBar.ItemsPanel>
+        <ItemsPanelTemplate>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+          </Grid>
+        </ItemsPanelTemplate>
+      </StatusBar.ItemsPanel>
+      <StatusBarItem Grid.Column="1">
+        <Button x:Name="ButtonResetUIScaleFactor" Content="{Binding Path=Value, ElementName=ScaleSlider}" ContentStringFormat="P0" Width="45" Click="ButtonResetUIScaleFactor_Click"/>
+      </StatusBarItem>
+      <StatusBarItem Grid.Column="2">
+        <Slider x:Name="ScaleSlider" Value="1" Minimum="0.50" Maximum="2" SmallChange="0.05" LargeChange="0.05" Width="200" VerticalAlignment="Center" TickFrequency="0.01" IsSnapToTickEnabled="True"/>
+      </StatusBarItem>
+    </StatusBar>
+
+  </Grid>
+</mahapps:MetroWindow>
