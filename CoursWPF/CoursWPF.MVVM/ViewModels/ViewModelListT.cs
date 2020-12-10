@@ -60,7 +60,7 @@ namespace CoursWPF.MVVM.ViewModels
         public ObservableCollection<T> ItemsSource
         {
             get => this._ItemsSource;
-            private set => this.SetProperty(nameof(this.ItemsSource), ref this._ItemsSource, value);
+            protected set => this.SetProperty(nameof(this.ItemsSource), ref this._ItemsSource, value);
         }
 
         /// <summary>

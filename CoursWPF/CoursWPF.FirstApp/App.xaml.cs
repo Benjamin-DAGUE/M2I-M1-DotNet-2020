@@ -1,4 +1,5 @@
-﻿using CoursWPF.FirstApp.ViewModels;
+﻿using CoursWPF.FirstApp.Models;
+using CoursWPF.FirstApp.ViewModels;
 using CoursWPF.FirstApp.ViewModels.Abstracts;
 using CoursWPF.FirstApp.Views.Abstracts;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,11 +22,15 @@ namespace CoursWPF.FirstApp
 
         private static ServiceProvider _ServiceProvider;
 
+        //private static DataStore _DataStore;
+
         #endregion
 
         #region Properties
 
         public static ServiceProvider ServiceProvider => _ServiceProvider;
+
+        //public static DataStore DataStore => _DataStore;
 
         #endregion
 
@@ -37,6 +42,10 @@ namespace CoursWPF.FirstApp
 
             ServiceCollection service = new ServiceCollection();
 
+            //_DataStore = DataStore.Load(".\\data.json");
+
+            service.AddSingleton<IDataStore>(sp => DataStore.Load(".\\data.json"));
+            service.AddTransient<IViewModelPeople>(sp => new ViewModelPeople());
             service.AddTransient<IViewModelPeople>(sp => new ViewModelPeople());
             service.AddTransient<IViewModelVehicules>(sp => new ViewModelVehicules());
             service.AddSingleton<IViewModelMainStatic>(sp => new ViewModelMainStatic());

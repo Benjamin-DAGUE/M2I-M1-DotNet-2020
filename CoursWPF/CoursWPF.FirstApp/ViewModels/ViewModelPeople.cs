@@ -2,6 +2,7 @@
 using CoursWPF.FirstApp.ViewModels.Abstracts;
 using CoursWPF.MVVM;
 using CoursWPF.MVVM.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,16 +24,7 @@ namespace CoursWPF.FirstApp.ViewModels
         public ViewModelPeople()
         {
             this.Title = "Personnes";
-            this.ItemsSource.Add(new Person()
-            {
-                FirstName = "Benjamin",
-                LastName = "DAGUÉ"
-            });
-            this.ItemsSource.Add(new Person()
-            {
-                FirstName = "Peter",
-                LastName = "BAUDRY"
-            });
+            this.ItemsSource = App.ServiceProvider.GetService<IDataStore>().People;
         }
 
         #endregion

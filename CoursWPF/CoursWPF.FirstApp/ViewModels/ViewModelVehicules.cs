@@ -2,6 +2,7 @@
 using CoursWPF.FirstApp.ViewModels.Abstracts;
 using CoursWPF.MVVM;
 using CoursWPF.MVVM.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,15 +24,7 @@ namespace CoursWPF.FirstApp.ViewModels
         public ViewModelVehicules()
         {
             this.Title = "Véhicules";
-
-            this.ItemsSource.Add(new Vehicule()
-            {
-                LicensePlate = "xx-001-xx"
-            });
-            this.ItemsSource.Add(new Vehicule()
-            {
-                LicensePlate = "xx-002-xx"
-            });
+            this.ItemsSource = App.ServiceProvider.GetService<IDataStore>().Vehicules;
         }
 
         #endregion

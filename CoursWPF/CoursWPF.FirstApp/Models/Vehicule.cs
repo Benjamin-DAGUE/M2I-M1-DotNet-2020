@@ -20,6 +20,8 @@ namespace CoursWPF.FirstApp.Models
 
         #endregion
 
+        #region Properties
+
         /// <summary>
         ///     Obtient ou définit la plaque d'immatriculation
         /// </summary>
@@ -28,5 +30,7 @@ namespace CoursWPF.FirstApp.Models
             get => this._LicensePlate;
             set => this.SetProperty(nameof(this.LicensePlate), ref this._LicensePlate, value);
         }
+
+        #endregion
     }
 }

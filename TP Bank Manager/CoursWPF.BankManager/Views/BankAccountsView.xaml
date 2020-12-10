@@ -8,8 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
   <DataGrid ItemsSource="{Binding ItemsSource}"
             SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Style="{DynamicResource DataGridStyle}"
-            IsReadOnly="True">
+            Style="{DynamicResource DataGridStyle}">
     <DataGrid.Columns>
       <DataGridTextColumn Header="Nom"    Binding="{Binding Name}"    MinWidth="200"/>
       <DataGridTextColumn Header="Numéro" Binding="{Binding Number}"  MinWidth="200"/>

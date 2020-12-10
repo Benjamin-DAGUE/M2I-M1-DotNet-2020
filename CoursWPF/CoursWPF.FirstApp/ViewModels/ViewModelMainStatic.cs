@@ -88,7 +88,7 @@ namespace CoursWPF.FirstApp.ViewModels
         /// </summary>
         /// <param name="param">Paramètre de la commande.</param>
         /// <returns>Détermine si la commande peut être exécutée.</returns>
-        protected virtual bool CanExecuteSave(object param) => false;
+        protected virtual bool CanExecuteSave(object param) => true;
 
         /// <summary>
         ///     Exécute la commande <see cref="Save"/>.
@@ -96,7 +96,7 @@ namespace CoursWPF.FirstApp.ViewModels
         /// <param name="param">Paramètre de la commande.</param>
         protected virtual void ExecuteSave(object param)
         {
-
+            App.ServiceProvider.GetService<IDataStore>().Save();
         }
 
         #endregion
