@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoursWPF.FirstApp", "CoursW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoursWPF.MVVM", "CoursWPF.MVVM\CoursWPF.MVVM.csproj", "{CAB42959-0E47-4062-9327-822C7C568018}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursWPF.BankManager", "CoursWPF.BankManager\CoursWPF.BankManager.csproj", "{B917C3A2-6A33-42C5-A7D6-AA897C89FDAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CAB42959-0E47-4062-9327-822C7C568018}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAB42959-0E47-4062-9327-822C7C568018}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAB42959-0E47-4062-9327-822C7C568018}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B917C3A2-6A33-42C5-A7D6-AA897C89FDAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B917C3A2-6A33-42C5-A7D6-AA897C89FDAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B917C3A2-6A33-42C5-A7D6-AA897C89FDAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B917C3A2-6A33-42C5-A7D6-AA897C89FDAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
