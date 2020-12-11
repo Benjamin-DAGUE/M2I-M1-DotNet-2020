@@ -18,12 +18,18 @@ namespace CoursWPF.BankManager
     {
         #region Fields
 
+        /// <summary>
+        ///     Jeu de données de l'application.
+        /// </summary>
         private static DataStore _DataStore;
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        ///     Obtient le jeu de données de l'application.
+        /// </summary>
         public static DataStore DataStore => _DataStore;
 
         #endregion

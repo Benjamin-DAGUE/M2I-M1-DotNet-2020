@@ -8,55 +8,79 @@ using System.Threading.Tasks;
 
 namespace CoursWPF.BankManager.ViewModels
 {
+    /// <summary>
+    ///     ViewModel principal de l'application.
+    /// </summary>
     public class ViewModelMain : ViewModelList<IAddItemDeleteItem>, IAddItemDeleteItem
     {
         #region Fields
 
-        private ViewModelAccounting _ViewModelAccounting;
+        /// <summary>
+        ///     ViewModel pour la gestion des comptes bancaires.
+        /// </summary>
+        private readonly ViewModelAccounting _ViewModelAccounting;
 
-        private ViewModelStatistics _ViewModelStatistics;
+        /// <summary>
+        ///     ViewModel pour les statistiques.
+        /// </summary>
+        private readonly ViewModelStatistics _ViewModelStatistics;
 
-        private ViewModelAdmin _ViewModelAdmin;
+        /// <summary>
+        ///     ViewModel pour l'onglet Administration dans le Tab principal.
+        /// </summary>
+        private readonly ViewModelAdmin _ViewModelAdmin;
 
-        private RelayCommand _Exit;
+        /// <summary>
+        ///     Commande pour quitter l'application.
+        /// </summary>
+        private readonly RelayCommand _Exit;
 
-        private RelayCommand _Save;
+        /// <summary>
+        ///     Commande pour sauvegarder les données.
+        /// </summary>
+        private readonly RelayCommand _Save;
 
         #endregion
 
         #region Properties
 
-        public ViewModelAccounting ViewModelAccounting 
-        { 
-            get => this._ViewModelAccounting; 
-            set => this._ViewModelAccounting = value; 
-        }
+        /// <summary>
+        ///     Obtient le ViewModel pour la gestion des comptes bancaires.
+        /// </summary>
+        public ViewModelAccounting ViewModelAccounting => this._ViewModelAccounting;
 
-        public ViewModelStatistics ViewModelStatistics 
-        {
-            get => this._ViewModelStatistics;
-            set => this._ViewModelStatistics = value; 
-        }
-        
-        public ViewModelAdmin ViewModelAdmin 
-        { 
-            get => this._ViewModelAdmin; 
-            set => this._ViewModelAdmin = value; 
-        }
+        /// <summary>
+        ///     Obtient le ViewModel pour l'onglet Administration dans le Tab principal.
+        /// </summary>
+        public ViewModelStatistics ViewModelStatistics => this._ViewModelStatistics;
 
+        /// <summary>
+        ///     Obtient le ViewModel pour l'onglet Administration dans le Tab principal.
+        /// </summary>
+        public ViewModelAdmin ViewModelAdmin => this._ViewModelAdmin;
+
+        /// <summary>
+        ///     Obtient la commande pour quitter l'application.
+        /// </summary>
         public RelayCommand Exit => this._Exit;
 
+        /// <summary>
+        ///     Obtient la commande pour sauvegarder l'application.
+        /// </summary>
         public RelayCommand Save => this._Save;
 
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        ///     Initialise une nouvelle instance de la classe <see cref="ViewModelMain"/>.
+        /// </summary>
         public ViewModelMain()
         {
-            this.ViewModelAccounting = new ViewModelAccounting();
-            this.ViewModelStatistics = new ViewModelStatistics();
-            this.ViewModelAdmin = new ViewModelAdmin();
+            this._ViewModelAccounting = new ViewModelAccounting();
+            this._ViewModelStatistics = new ViewModelStatistics();
+            this._ViewModelAdmin = new ViewModelAdmin();
 
             this.ItemsSource.Add(this.ViewModelAccounting);
             this.ItemsSource.Add(this.ViewModelStatistics);
@@ -74,16 +98,34 @@ namespace CoursWPF.BankManager.ViewModels
 
         #region AddItem
 
+        /// <summary>
+        ///     Test si la commande <see cref="AddItem"/> peut être exécutée.
+        /// </summary>
+        /// <param name="param">Paramètre de la commande.</param>
+        /// <returns>Détermine si la commande peut être exécutée.</returns>
         protected override bool CanExecuteAddItem(object param) => this.SelectedItem?.AddItem?.CanExecute(param) == true;
 
+        /// <summary>
+        ///     Exécute la commande <see cref="AddItem"/>.
+        /// </summary>
+        /// <param name="param">Paramètre de la commande.</param>
         protected override void ExecuteAddItem(object param) => this.SelectedItem?.AddItem?.Execute(param);
 
         #endregion
 
         #region DeleteItem
 
+        /// <summary>
+        ///     Test si la commande <see cref="DeleteItem"/> peut être exécutée.
+        /// </summary>
+        /// <param name="param">Paramètre de la commande.</param>
+        /// <returns>Détermine si la commande peut être exécutée.</returns>
         protected override bool CanExecuteDeleteItem(object param) => this.SelectedItem?.DeleteItem?.CanExecute(param) == true;
 
+        /// <summary>
+        ///     Exécute la commande <see cref="DeleteItem"/>.
+        /// </summary>
+        /// <param name="param">Paramètre de la commande.</param>
         protected override void ExecuteDeleteItem(object param) => this.SelectedItem?.DeleteItem?.Execute(param);
 
         #endregion

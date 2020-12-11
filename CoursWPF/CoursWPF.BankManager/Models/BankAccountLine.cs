@@ -8,15 +8,27 @@ using System.Threading.Tasks;
 
 namespace CoursWPF.BankManager.Models
 {
+    /// <summary>
+    ///     Représente une ligne d'écriture.
+    /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
     public class BankAccountLine : ObservableObject
     {
         #region Fields
 
+        /// <summary>
+        ///     Identifiant de la ligne d'écriture.
+        /// </summary>
         private Guid _Identifier;
 
+        /// <summary>
+        ///     Identifiant du compte bancaire associé.
+        /// </summary>
         private Guid _IdentifierBankAccount;
 
+        /// <summary>
+        ///     Identifiant de la catégorie associée.
+        /// </summary>
         private Guid? _IdentifierCategory;
 
         /// <summary>
@@ -34,24 +46,36 @@ namespace CoursWPF.BankManager.Models
         /// </summary>
         private DateTime _Date;
 
+        /// <summary>
+        ///     Catégorie associée.
+        /// </summary>
         private Category _Category;
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        ///     Obtient ou définit l'identifiant de la ligne d'écriture.
+        /// </summary>
         public Guid Identifier
         {
             get => this._Identifier;
             set => this.SetProperty(nameof(this.Identifier), ref this._Identifier, value);
         }
 
+        /// <summary>
+        ///     Obtient ou définit l'identifiant du compte bancaire associé.
+        /// </summary>
         public Guid IdentifierBankAccount
         {
             get => this._IdentifierBankAccount;
             set => this.SetProperty(nameof(this.IdentifierBankAccount), ref this._IdentifierBankAccount, value);
         }
 
+        /// <summary>
+        ///     Obtient ou définit l'identifiant de la catégorie associée.
+        /// </summary>
         public Guid? IdentifierCategory
         {
             get => this._IdentifierCategory;
@@ -86,6 +110,9 @@ namespace CoursWPF.BankManager.Models
             set => this.SetProperty(nameof(this.Date), ref this._Date, value);
         }
 
+        /// <summary>
+        ///     Obtient ou définit la catégorie associée.
+        /// </summary>
         [JsonIgnore]
         public Category Category
         {

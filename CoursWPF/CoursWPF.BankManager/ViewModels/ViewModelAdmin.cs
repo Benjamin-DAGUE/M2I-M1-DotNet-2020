@@ -8,39 +8,49 @@ using System.Threading.Tasks;
 
 namespace CoursWPF.BankManager.ViewModels
 {
+    /// <summary>
+    ///     ViewModel pour l'onglet Administration dans le Tab principal.
+    /// </summary>
     public class ViewModelAdmin : ViewModelList<IAddItemDeleteItem>, IAddItemDeleteItem
     {
         #region Fields
 
-        private ViewModelAccounts _ViewModelAccounts;
+        /// <summary>
+        ///     ViewModel pour l'administration des comptes bancaires.
+        /// </summary>
+        private readonly ViewModelAccounts _ViewModelAccounts;
 
-        private ViewModelCategories _ViewModelCategories;
+        /// <summary>
+        ///     ViewModel pour l'adminisation des catégories.
+        /// </summary>
+        private readonly ViewModelCategories _ViewModelCategories;
 
         #endregion
 
         #region Properties
 
-        public ViewModelAccounts ViewModelAccounts
-        {
-            get => this._ViewModelAccounts;
-            set => this._ViewModelAccounts = value;
-        }
+        /// <summary>
+        ///     Obtient ou définit le ViewModel pour l'administration des comptes bancaires.
+        /// </summary>
+        public ViewModelAccounts ViewModelAccounts => this._ViewModelAccounts;
 
-        public ViewModelCategories ViewModelCategories
-        {
-            get => this._ViewModelCategories;
-            set => this._ViewModelCategories = value;
-        }
+        /// <summary>
+        ///     Obtient ou définit le ViewModel pour l'adminisation des catégories.
+        /// </summary>
+        public ViewModelCategories ViewModelCategories => this._ViewModelCategories;
 
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        ///     Initialise une nouvelle instance de la classe <see cref="ViewModelAdmin"/>.
+        /// </summary>
         public ViewModelAdmin()
         {
             this.Title = "Administration";
-            this.ViewModelAccounts = new ViewModelAccounts();
-            this.ViewModelCategories = new ViewModelCategories();
+            this._ViewModelAccounts = new ViewModelAccounts();
+            this._ViewModelCategories = new ViewModelCategories();
 
             this.ItemsSource.Add(this.ViewModelAccounts);
             this.ItemsSource.Add(this.ViewModelCategories);
@@ -52,16 +62,34 @@ namespace CoursWPF.BankManager.ViewModels
 
         #region AddItem
 
+        /// <summary>
+        ///     Test si la commande <see cref="AddItem"/> peut être exécutée.
+        /// </summary>
+        /// <param name="param">Paramètre de la commande.</param>
+        /// <returns>Détermine si la commande peut être exécutée.</returns>
         protected override bool CanExecuteAddItem(object param) => this.SelectedItem?.AddItem?.CanExecute(param) == true;
 
+        /// <summary>
+        ///     Exécute la commande <see cref="AddItem"/>.
+        /// </summary>
+        /// <param name="param">Paramètre de la commande.</param>
         protected override void ExecuteAddItem(object param) => this.SelectedItem?.AddItem?.Execute(param);
 
         #endregion
 
         #region DeleteItem
 
+        /// <summary>
+        ///     Test si la commande <see cref="DeleteItem"/> peut être exécutée.
+        /// </summary>
+        /// <param name="param">Paramètre de la commande.</param>
+        /// <returns>Détermine si la commande peut être exécutée.</returns>
         protected override bool CanExecuteDeleteItem(object param) => this.SelectedItem?.DeleteItem?.CanExecute(param) == true;
 
+        /// <summary>
+        ///     Exécute la commande <see cref="DeleteItem"/>.
+        /// </summary>
+        /// <param name="param">Paramètre de la commande.</param>
         protected override void ExecuteDeleteItem(object param) => this.SelectedItem?.DeleteItem?.Execute(param);
 
         #endregion

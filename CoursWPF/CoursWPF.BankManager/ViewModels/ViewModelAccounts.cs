@@ -9,10 +9,16 @@ using System.Threading.Tasks;
 
 namespace CoursWPF.BankManager.ViewModels
 {
+    /// <summary>
+    ///     ViewModel pour l'administration des comptes bancaires.
+    /// </summary>
     public class ViewModelAccounts : ViewModelList<BankAccount>, IAddItemDeleteItem
     {
         #region Constructors
 
+        /// <summary>
+        ///     Initialise une nouvelle instance de la classe <see cref="ViewModelAccounts"/>.
+        /// </summary>
         public ViewModelAccounts()
         {
             this.Title = "Comptes";
@@ -25,6 +31,11 @@ namespace CoursWPF.BankManager.ViewModels
 
         #region AddItem
 
+        /// <summary>
+        ///     Retourne une nouvelle instance (appelée lors de l'exécution de la commande <see cref="AddItem"/>).
+        /// </summary>
+        /// <param name="param">Paramètre de la commande <see cref="AddItem"/>.</param>
+        /// <returns>Nouvelle instance.</returns>
         protected override BankAccount CreateInstance(object param) => new BankAccount()
         {
             Identifier = Guid.NewGuid()

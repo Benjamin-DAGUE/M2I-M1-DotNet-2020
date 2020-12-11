@@ -121,6 +121,11 @@ namespace CoursWPF.MVVM.ViewModels
             this.SelectedItem = p;
         }
 
+        /// <summary>
+        ///     Retourne une nouvelle instance (appelée lors de l'exécution de la commande <see cref="AddItem"/>).
+        /// </summary>
+        /// <param name="param">Paramètre de la commande <see cref="AddItem"/>.</param>
+        /// <returns>Nouvelle instance.</returns>
         protected virtual T CreateInstance(object param) => default(T);
 
         #endregion
