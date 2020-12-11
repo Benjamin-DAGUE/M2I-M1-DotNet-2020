@@ -16,8 +16,7 @@ namespace CoursWPF.BankManager.ViewModels
         public ViewModelAccounts()
         {
             this.Title = "Comptes";
-            this.ItemsSource.Add(new BankAccount() { });
-            this.ItemsSource.Add(new BankAccount() { });
+            this.ItemsSource = App.DataStore.BankAccounts;
         }
 
         #endregion
@@ -26,7 +25,10 @@ namespace CoursWPF.BankManager.ViewModels
 
         #region AddItem
 
-        protected override BankAccount CreateInstance(object param) => new BankAccount();
+        protected override BankAccount CreateInstance(object param) => new BankAccount()
+        {
+            Identifier = Guid.NewGuid()
+        };
 
         #endregion
 

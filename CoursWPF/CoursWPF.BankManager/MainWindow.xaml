@@ -16,7 +16,7 @@
 
     <Menu Grid.Row="0">
       <MenuItem Header="Fichier">
-        <MenuItem Header="Sauvegarder"/>
+        <MenuItem Header="Sauvegarder" Command="{Binding Save}"/>
         <Separator/>
         <MenuItem Header="Quitter"  Command="{Binding Exit}"/>
       </MenuItem>
@@ -25,27 +25,9 @@
         <MenuItem Header="Supprimer"  Command="{Binding DeleteItem}"/>
       </MenuItem>
     </Menu>
-
     
-    <TabControl Grid.Row="1" SelectedItem="{Binding SelectedViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-      <TabItem Header="Comptes" DataContext="{Binding ViewModelAccounting}">
-        <views:ViewAccounting/>
-      </TabItem>
-      <TabItem Header="Statistiques" DataContext="{Binding ViewModelStatistics}">
-        <views:ViewStatistics/>
-      </TabItem>
-      <TabItem Header="Administration"  DataContext="{Binding ViewModelAdmin}">
-        <TabControl SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    ItemsSource="{Binding ItemsSource}"
-                    DisplayMemberPath="Title">
-          <!--<TabItem Header="Comptes" DataContext="{Binding ViewModelAccounts}">
-            <views:ViewAccounts/>
-          </TabItem>
-          <TabItem Header="Catégories" DataContext="{Binding ViewModelCategories}">
-            <views:ViewCategories/>
-          </TabItem>-->
-        </TabControl>
-      </TabItem>
+    <TabControl Grid.Row="1" ItemsSource="{Binding ItemsSource}" DisplayMemberPath="Title"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
     </TabControl>
 
     <StatusBar Grid.Row="2">

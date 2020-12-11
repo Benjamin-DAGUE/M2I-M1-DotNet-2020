@@ -11,11 +11,19 @@ namespace CoursWPF.BankManager.Models
     {
         #region Fields
 
+        private Guid _Identifier;
+
         private string _Label;
 
         #endregion
 
         #region Properties
+
+        public Guid Identifier
+        {
+            get => this._Identifier;
+            set => this.SetProperty(nameof(this.Identifier), ref this._Identifier, value);
+        }
 
         public string Label
         {

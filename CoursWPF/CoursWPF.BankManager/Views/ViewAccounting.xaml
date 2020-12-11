@@ -3,8 +3,85 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CoursWPF.BankManager.Views"
+             xmlns:local="clr-namespace:CoursWPF.BankManager"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-  <TextBlock Text="{Binding}"/>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="30*"/>
+      <ColumnDefinition Width="70*"/>
+    </Grid.ColumnDefinitions>
+
+    <ListBox Grid.Column="0"
+             ItemsSource="{Binding ItemsSource}" 
+             SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             DisplayMemberPath="Name"/>
+
+    <Grid Grid.Column="1" Visibility="{Binding SelectedItem, Converter={StaticResource SharedObjectToVisibilityConverter}}">
+
+      <Grid DataContext="{Binding ViewModelBankAccountLines}" >
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Row="0" Grid.Column="1" Content="&lt;&lt;" Command="{Binding ChangePeriod}" CommandParameter="-"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding CurrentDate, StringFormat=MM/yyyy}" FontSize="30"/>
+        <Button Grid.Row="0" Grid.Column="3" Content="&gt;&gt;" Command="{Binding ChangePeriod}" CommandParameter="+"/>
+
+        <DataGrid Grid.Row="1" Grid.ColumnSpan="5" Style="{StaticResource DataGridStyle}"
+                ItemsSource="{Binding ItemsSource}"
+                SelectedItem="{Binding SelectedItem}"
+                IsReadOnly="True">
+          <DataGrid.Columns>
+            <DataGridTemplateColumn Header="Date" SortMemberPath="Date">
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <DatePicker SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            
+            <DataGridTemplateColumn Header="Libellé" SortMemberPath="Label">
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <TextBox Text="{Binding Label, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+            <DataGridTemplateColumn Header="Montant" SortMemberPath="Value">
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <TextBox Text="{Binding Value, StringFormat=C2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+            <DataGridTemplateColumn Header="Catégorie" SortMemberPath="Category.Label">
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <ComboBox ItemsSource="{Binding Path=Categories, Source={x:Static local:App.DataStore}}"
+                            SelectedItem="{Binding Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            DisplayMemberPath="Label"/>
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+          </DataGrid.Columns>
+        </DataGrid>
+
+
+      </Grid>
+      
+    </Grid>
+  </Grid>
+
 </UserControl>

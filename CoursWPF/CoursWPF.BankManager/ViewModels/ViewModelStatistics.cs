@@ -7,7 +7,17 @@ using System.Threading.Tasks;
 
 namespace CoursWPF.BankManager.ViewModels
 {
-    public class ViewModelStatistics : ObservableObject
+    public class ViewModelStatistics : ObservableObject, IAddItemDeleteItem
     {
+        public string Title { get; set; }
+
+        public RelayCommand AddItem => null;
+
+        public RelayCommand DeleteItem => null;
+
+        public ViewModelStatistics()
+        {
+            this.Title = "Statistiques";
+        }
     }
 }

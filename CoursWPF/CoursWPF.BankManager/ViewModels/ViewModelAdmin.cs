@@ -52,17 +52,17 @@ namespace CoursWPF.BankManager.ViewModels
 
         #region AddItem
 
-        protected override bool CanExecuteAddItem(object param) => this.SelectedItem.AddItem.CanExecute(param);
+        protected override bool CanExecuteAddItem(object param) => this.SelectedItem?.AddItem?.CanExecute(param) == true;
 
-        protected override void ExecuteAddItem(object param) => this.SelectedItem.AddItem.Execute(param);
+        protected override void ExecuteAddItem(object param) => this.SelectedItem?.AddItem?.Execute(param);
 
         #endregion
 
         #region DeleteItem
 
-        protected override bool CanExecuteDeleteItem(object param) => this.SelectedItem.DeleteItem.CanExecute(param);
+        protected override bool CanExecuteDeleteItem(object param) => this.SelectedItem?.DeleteItem?.CanExecute(param) == true;
 
-        protected override void ExecuteDeleteItem(object param) => this.SelectedItem.DeleteItem.Execute(param);
+        protected override void ExecuteDeleteItem(object param) => this.SelectedItem?.DeleteItem?.Execute(param);
 
         #endregion
 

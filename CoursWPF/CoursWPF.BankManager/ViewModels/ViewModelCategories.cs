@@ -17,8 +17,7 @@ namespace CoursWPF.BankManager.ViewModels
         public ViewModelCategories()
         {
             this.Title = "Catégories";
-            this.ItemsSource.Add(new Category() { Label = "Loyer" });
-            this.ItemsSource.Add(new Category() { Label = "Loisirs" });
+            this.ItemsSource = App.DataStore.Categories;
         }
 
         #endregion
@@ -27,7 +26,10 @@ namespace CoursWPF.BankManager.ViewModels
 
         #region AddItem
 
-        protected override Category CreateInstance(object param) => new Category();
+        protected override Category CreateInstance(object param) => new Category()
+        {
+            Identifier = Guid.NewGuid()
+        };
 
         #endregion
 

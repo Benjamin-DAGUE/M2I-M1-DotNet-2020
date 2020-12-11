@@ -1,4 +1,5 @@
 ﻿using CoursWPF.MVVM;
+using CoursWPF.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoursWPF.BankManager.ViewModels
 {
-    public class ViewModelMain : ObservableObject, IAddItemDeleteItem
+    public class ViewModelMain : ViewModelList<IAddItemDeleteItem>, IAddItemDeleteItem
     {
         #region Fields
 
@@ -17,13 +18,9 @@ namespace CoursWPF.BankManager.ViewModels
 
         private ViewModelAdmin _ViewModelAdmin;
 
-        private IAddItemDeleteItem _SelectedViewModel;
-
         private RelayCommand _Exit;
 
-        private RelayCommand _AddItem;
-
-        private RelayCommand _DeleteItem;
+        private RelayCommand _Save;
 
         #endregion
 
@@ -47,17 +44,9 @@ namespace CoursWPF.BankManager.ViewModels
             set => this._ViewModelAdmin = value; 
         }
 
-        public IAddItemDeleteItem SelectedViewModel
-        {
-            get => this._SelectedViewModel;
-            set => this.SetProperty(nameof(this.SelectedViewModel), ref this._SelectedViewModel, value);
-        }
-
         public RelayCommand Exit => this._Exit;
 
-        public RelayCommand AddItem => this._AddItem;
-
-        public RelayCommand DeleteItem => this._DeleteItem;
+        public RelayCommand Save => this._Save;
 
         #endregion
 
@@ -68,10 +57,15 @@ namespace CoursWPF.BankManager.ViewModels
             this.ViewModelAccounting = new ViewModelAccounting();
             this.ViewModelStatistics = new ViewModelStatistics();
             this.ViewModelAdmin = new ViewModelAdmin();
-            this._Exit = new RelayCommand((param) => Environment.Exit(0));
-            this._AddItem = new RelayCommand(this.ExecuteAddItem, this.CanExecuteAddItem);
-            this._DeleteItem = new RelayCommand(this.ExecuteDeleteItem, this.CanExecuteDeleteItem);
 
+            this.ItemsSource.Add(this.ViewModelAccounting);
+            this.ItemsSource.Add(this.ViewModelStatistics);
+            this.ItemsSource.Add(this.ViewModelAdmin);
+
+            this.SelectedItem = this.ViewModelAccounting;
+
+            this._Exit = new RelayCommand((param) => Environment.Exit(0));
+            this._Save = new RelayCommand((param) => App.DataStore.Save());
         }
 
         #endregion
@@ -80,17 +74,17 @@ namespace CoursWPF.BankManager.ViewModels
 
         #region AddItem
 
-        private bool CanExecuteAddItem(object param) => this.SelectedViewModel?.AddItem?.CanExecute(param) == true;
+        protected override bool CanExecuteAddItem(object param) => this.SelectedItem?.AddItem?.CanExecute(param) == true;
 
-        private void ExecuteAddItem(object param) => this.SelectedViewModel?.AddItem?.Execute(param);
+        protected override void ExecuteAddItem(object param) => this.SelectedItem?.AddItem?.Execute(param);
 
         #endregion
 
         #region DeleteItem
 
-        private bool CanExecuteDeleteItem(object param) => this.SelectedViewModel?.DeleteItem?.CanExecute(param) == true;
+        protected override bool CanExecuteDeleteItem(object param) => this.SelectedItem?.DeleteItem?.CanExecute(param) == true;
 
-        private void ExecuteDeleteItem(object param) => this.SelectedViewModel?.DeleteItem?.Execute(param);
+        protected override void ExecuteDeleteItem(object param) => this.SelectedItem?.DeleteItem?.Execute(param);
 
         #endregion
 

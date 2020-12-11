@@ -2,10 +2,29 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:CoursWPF.BankManager"
                     xmlns:views="clr-namespace:CoursWPF.BankManager.Views"
-                    xmlns:vm="clr-namespace:CoursWPF.BankManager.ViewModels"
-                    >
+                    xmlns:vm="clr-namespace:CoursWPF.BankManager.ViewModels">
+  
   <DataTemplate DataType="{x:Type vm:ViewModelCategories}">
     <views:ViewCategories/>
   </DataTemplate>
-  
+
+  <DataTemplate DataType="{x:Type vm:ViewModelAccounts}">
+    <views:ViewAccounts/>
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type vm:ViewModelStatistics}">
+    <views:ViewStatistics/>
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type vm:ViewModelAccounting}">
+    <views:ViewAccounting/>
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type vm:ViewModelAdmin}">
+    <TabControl SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ItemsSource="{Binding ItemsSource}"
+                    DisplayMemberPath="Title">
+    </TabControl>
+  </DataTemplate>
+
 </ResourceDictionary>
